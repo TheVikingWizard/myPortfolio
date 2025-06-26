@@ -9,6 +9,7 @@ import ControlButtons from "../components/ControlButtons";
 import DynamicContent from "../components/DynamicContent";
 import ProfileImage from "../components/ProfileImage";
 import Menu from "../components/Menu";
+import SocialIcons from "../components/SocialIcons";
 
 
 const SECTIONS = [
@@ -26,15 +27,21 @@ function Home() {
     const [sectionVisible, setSectionVisible] = useState(true); 
     const [darkMode, setDarkMode] = useState(true);
     const [outro, setOutro] = useState(false);
+    const preserveIndexRef = useRef(false);
     const profileRef = useRef(null);
     const contentRef = useRef(null);
     const introRef = useRef(null);
     const outroRef = useRef(null);
+    const currentIndexRef = useRef(currentIndex);
     
     useEffect(() => {
         window.scrollTo(0, 0); 
     }, []);
-    
+
+     useEffect(() => {
+        currentIndexRef.current = currentIndex;
+    }, [currentIndex]);
+
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 10);
         window.addEventListener("scroll", handleScroll);
@@ -45,7 +52,11 @@ function Home() {
         if (scrolled) {
             const timer = setTimeout(() => {
                 setShrinkWrapper(true);
-                setCurrentIndex(0);
+                if (!preserveIndexRef.current) {
+                    setCurrentIndex(0);
+                } else {
+                    preserveIndexRef.current = false; // reset flag after use
+                }
             }, 1500);
             return () => clearTimeout(timer);
         } else {
@@ -132,84 +143,86 @@ function Home() {
         }, 900); 
     };
 
-  return (
-        <>
-        <Navbar scrolled={scrolled} darkMode={darkMode}/>
-        <div className={`w-full min-h-screen pt-24`}> 
-            <section
-              className={`fixed top-0 left-0 w-full h-screen
-                flex flex-col md:flex-row items-center md:items-start justify-between gap-0
-                ${darkMode ? "bg-gray-900 text-white" : "bg-gray-50 text-black"}
-                overflow-hidden`}
-            >
-            { (
-                <>
-                  <ControlButtons
-                    darkMode={darkMode}
-                    setDarkMode={setDarkMode}
-                    shrinkWrapper={shrinkWrapper}
-                    setShrinkWrapper={setShrinkWrapper}
-                    scrolled={scrolled}
-                    setScrolled={setScrolled}
-                    outro={outro}
-                    setOutro={setOutro}
-                    currentIndex={currentIndex}
-                    setCurrentIndex={setCurrentIndex}
-                    animateToIndex={animateToIndex}
-                    SECTIONS={SECTIONS}
-                  />
-                </>
-              )}
-                  
+return (
+  <>
+    <Navbar scrolled={scrolled} darkMode={darkMode} />
+    <div className="w-full min-h-screen pt-24">
+      <section
+        className={`fixed top-0 left-0 w-full h-screen flex flex-col md:flex-row items-center md:items-start justify-between gap-0 ${
+          darkMode ? "bg-gray-900 text-white" : "bg-gray-50 text-black"
+        } overflow-hidden`}
+      >
+        {/* Control Buttons */}
+        <ControlButtons
+          darkMode={darkMode}
+          setDarkMode={setDarkMode}
+          shrinkWrapper={shrinkWrapper}
+          setShrinkWrapper={setShrinkWrapper}
+          scrolled={scrolled}
+          setScrolled={setScrolled}
+          outro={outro}
+          setOutro={setOutro}
+          currentIndex={currentIndex}
+          setCurrentIndex={setCurrentIndex}
+          animateToIndex={animateToIndex}
+          SECTIONS={SECTIONS}
+        />
+
         {/* Profile + Menu Section */}
         <div
-            onWheel={(e) => {
-              if (shrinkWrapper) {
-                e.preventDefault(); // ❌ Block scroll on profile/menu when shrunken
-              }
-            }}
-            className={`relative h-full flex-shrink-0 transition-all duration-700 ease-in-out ${!shrinkWrapper ? "aspect-square" : ""} `}
-            style={{ width: shrinkWrapper ? "20rem" : undefined }}
+          onWheel={(e) => {
+            if (shrinkWrapper) {
+              e.preventDefault();
+            }
+          }}
+          className={`relative h-full flex-shrink-0 transition-all duration-700 ease-in-out ${
+            !shrinkWrapper ? "aspect-square" : ""
+          }`}
+          style={{ width: shrinkWrapper ? "20rem" : undefined }}
         >
-            <ProfileImage
-              darkMode={darkMode}
-              scrolled={scrolled}
-              shrinkWrapper={shrinkWrapper}
-              profileRef={profileRef}
-            />
+          <ProfileImage
+            darkMode={darkMode}
+            scrolled={scrolled}
+            shrinkWrapper={shrinkWrapper}
+            profileRef={profileRef}
+          />
 
-            {/* Sliding Pop-up Menu */}
-            {shrinkWrapper && (
-              <Menu
-                darkMode={darkMode}
-                shrinkWrapper={shrinkWrapper}
-                currentIndex={currentIndex}
-                setCurrentIndex={setCurrentIndex}
-                SECTIONS={SECTIONS}
-              />
-            )}
+          {shrinkWrapper && (
+            <Menu
+              darkMode={darkMode}
+              shrinkWrapper={shrinkWrapper}
+              currentIndex={currentIndex}
+              setCurrentIndex={setCurrentIndex}
+              SECTIONS={SECTIONS}
+            />
+          )}
         </div>
 
-        <DynamicContent
-          darkMode={darkMode}
-          shrinkWrapper={shrinkWrapper}
-          outro={outro}
-          scrolled={scrolled}
-          sectionVisible={sectionVisible}
-          SECTIONS={SECTIONS}
-          currentIndex={currentIndex}
-          setShrinkWrapper={setShrinkWrapper}
-          setCurrentIndex={setCurrentIndex}
-          setOutro={setOutro}
-          contentRef={contentRef}
-          introRef={introRef}
-          outroRef={outroRef}
-        />
+        {/* DynamicContent always rendered, visibility toggled */}
+          <DynamicContent
+            darkMode={darkMode}
+            shrinkWrapper={shrinkWrapper}
+            outro={outro}
+            scrolled={scrolled}
+            sectionVisible={sectionVisible}
+            SECTIONS={SECTIONS}
+            currentIndex={currentIndex}
+            preserveIndexRef={preserveIndexRef}
+            currentIndexRef={currentIndexRef}
+            setShrinkWrapper={setShrinkWrapper}
+            setCurrentIndex={setCurrentIndex}
+            setOutro={setOutro}
+            contentRef={contentRef}
+            introRef={introRef}
+            outroRef={outroRef}
+          />
+        
       </section>
+
       <div className="h-[950px] bg-transparent"></div>
     </div>
-    </>
-  );
+  </>
+);
 }
 
 export default Home;
