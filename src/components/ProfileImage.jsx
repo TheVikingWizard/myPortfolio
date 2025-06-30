@@ -1,8 +1,5 @@
-import React from "react";
-import profilePic from "../assets/profile.jpg";
-import profilePic2 from "../assets/profile2.jpg";
-import profilePicB from "../assets/profileDark.jpg";
-import profilePic2B from "../assets/profileDark2.jpg";
+import profilePic from "../assets/profile.png";
+import profilePic2 from "../assets/profile2.png";
 
 const ProfileImage = ({ darkMode, scrolled, shrinkWrapper, profileRef }) => {
   return (
@@ -12,7 +9,7 @@ const ProfileImage = ({ darkMode, scrolled, shrinkWrapper, profileRef }) => {
       }}
       className={`relative h-full flex-shrink-0 transition-all duration-700 ease-in-out ${
         !shrinkWrapper ? "aspect-square" : ""
-      }`}
+      } border border-red-500`}
       style={{ width: shrinkWrapper ? "20rem" : undefined }}
     >
       <div
@@ -23,7 +20,7 @@ const ProfileImage = ({ darkMode, scrolled, shrinkWrapper, profileRef }) => {
       >
         {/* Unscrolled Image */}
         <img
-          src={darkMode ? profilePicB : profilePic}
+          src={profilePic}
           alt="Profile"
           className={`absolute top-0 left-0 w-full h-full object-cover object-bottom transition-opacity duration-700 ease-in-out ${
             scrolled ? "opacity-0" : "opacity-100"
@@ -32,7 +29,7 @@ const ProfileImage = ({ darkMode, scrolled, shrinkWrapper, profileRef }) => {
 
         {/* Scrolled Image */}
         <img
-          src={darkMode ? profilePic2B : profilePic2}
+          src={profilePic2}
           alt="Profile Alt"
           className={`absolute top-0 left-0 w-full h-full object-cover object-bottom transition-opacity duration-700 ease-in-out ${
             scrolled ? "opacity-100" : "opacity-0"

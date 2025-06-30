@@ -32,21 +32,6 @@ const OutroSection = ({darkMode, scrolled, outroRef,setShrinkWrapper,setCurrentI
                 </div>
 
                 <SocialIcons align="left" />
-
-                <button
-  onClick={() => {
-    window.scrollTo({ top: 20, behavior: "smooth" });
-    setTimeout(() => {
-      preserveIndexRef.current = true;
-      setCurrentIndex(currentIndexRef.current);  // 👈 this must come BEFORE
-      setShrinkWrapper(true);                    // 👈 this must come AFTER
-      setOutro(false);
-    }, 700);
-  }}
-                className="mt-10 mb-8 px-4 py-2 bg-[#dfb16d] text-white rounded-full shadow hover:bg-[#766d3b] transition duration-300"
-                >
-                ←
-                </button>
             </div>
         </div>
     );

@@ -81,8 +81,9 @@ const groupedProjects = categories.reduce((acc, category) => {
   return acc;
 }, {});
 
-export default function ProjectsContent() {
+export default function ProjectsContent({darkMode}) {
   const [activeTab, setActiveTab] = useState("Featured");
+
 
   return (
     <section className="py-12">
@@ -93,8 +94,8 @@ export default function ProjectsContent() {
             key={cat}
             className={`px-4 py-2 rounded transition-all duration-300 text-sm font-medium ${
               activeTab === cat
-                ? "bg-[#dfb16d] text-white"
-                : "bg-gray-800 text-gray-400 hover:bg-[#dfb16d] hover:text-white"
+                ? darkMode ? "bg-[#dfb16d] text-[#fdfcfc]" : "bg-[#766d3b] text-[#fdfcfc]"
+                : darkMode ? "bg-gray-800 text-gray-400 hover:bg-[#dfb16d] hover:text-[#fdfcfc]" : "bg-gray-300 text-gray-800 hover:bg-[#766d3b] hover:text-[#fdfcfc]"
             }`}
             onClick={() => setActiveTab(cat)}
           >
@@ -122,7 +123,10 @@ export default function ProjectsContent() {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.4, delay: idx * 0.05 }}
               >
-                <ProjectCard {...project} />
+                <ProjectCard 
+                  {...project}
+                  dark = {darkMode ? true : false}
+                  />
               </motion.div>
             ))}
           </AnimatePresence>

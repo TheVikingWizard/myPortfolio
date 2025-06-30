@@ -1,4 +1,3 @@
-import React from "react";
 import SocialIcons from "./SocialIcons";
 
 const Menu = ({ darkMode, shrinkWrapper, currentIndex, setCurrentIndex, SECTIONS }) => {
@@ -7,17 +6,17 @@ const Menu = ({ darkMode, shrinkWrapper, currentIndex, setCurrentIndex, SECTIONS
     return (
         <div
             className="absolute left-0 bottom-0 w-full px-4 overflow-hidden origin-bottom z-40
-                       h-[calc(100%-19.5rem)] mt-[1rem] opacity-100 scale-y-100 transition-all duration-700 ease-in-out"
+                       h-[calc(100%-19.5rem)] mt-[1rem] opacity-100 scale-y-100 transition-all duration-700 ease-in-out border border-red-500"
         >
             <div
                 className={`w-[17.5rem] h-full ${darkMode ? "bg-[#111827]" : "bg-[#fdfcfc]"} flex flex-col items-center py-6`}
             >
                 {/* 🔗 Social Icons Row */}
-                <SocialIcons align="center" inverted />
+                {darkMode ? <SocialIcons align="center" inverted /> : <SocialIcons align="center" />}
 
                 {/* Section Navigation */}
-                <div className="relative w-full flex-1 flex flex-col justify-center items-start">
-                    <div className="relative left-5/6 flex flex-col items-center justify-center pt-8">
+                <div className="relative w-full flex-1 flex flex-col justify-center items-start border border-green-500">
+                    <div className="relative left-5/6 flex flex-col items-center justify-center pt-8 border borderr-red-500">
                         <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-[#766d3b] rounded-full -translate-x-1/2"></div>
 
                         {SECTIONS.map(({ title }, idx) => (

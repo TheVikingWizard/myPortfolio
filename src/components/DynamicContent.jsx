@@ -1,6 +1,7 @@
 import IntroSection from "./IntroSection";
 import OutroSection from "./OutroSection";
 import ContentSection from "./ContentSection";
+import ControlButtons from "./ControlButtons";
 
 const DynamicContent = ({
   darkMode,
@@ -8,6 +9,7 @@ const DynamicContent = ({
   outro,
   introRef,
   outroRef,
+  darkModeRef,
   scrolled,
   sectionVisible,
   currentIndex,
@@ -17,7 +19,10 @@ const DynamicContent = ({
   setOutro,
   setCurrentIndex,
   preserveIndexRef,
-  currentIndexRef
+  currentIndexRef,
+  setDarkMode,
+  setScrolled,
+  animateToIndex
 }) => {
   console.log("RENDER CHECK", {
   shrinkWrapper,
@@ -27,9 +32,9 @@ const DynamicContent = ({
 });
   return (
     <div
-      className={`flex-1 h-full overflow-y-auto scrollbar-none pr-4 ${
+      className={`flex-1 h-full overflow-y-auto scrollbar-none ${scrolled ? "ml-18" : ""} pr-18 ${
         darkMode ? "bg-gray-900" : "bg-[#fdfcfc]"
-      }`}
+      } border border-red-500`}
       ref={contentRef}
       style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
     >
@@ -40,6 +45,24 @@ const DynamicContent = ({
           }
         `}
       </style>
+
+      {/* Control Buttons */}
+        <ControlButtons
+          darkMode={darkMode}
+          setDarkMode={setDarkMode}
+          shrinkWrapper={shrinkWrapper}
+          setShrinkWrapper={setShrinkWrapper}
+          scrolled={scrolled}
+          setScrolled={setScrolled}
+          outro={outro}
+          setOutro={setOutro}
+          currentIndex={currentIndex}
+          setCurrentIndex={setCurrentIndex}
+          animateToIndex={animateToIndex}
+          SECTIONS={SECTIONS}
+          preserveIndexRef={preserveIndexRef}
+          currentIndexRef={currentIndexRef}
+        />
 
       {!shrinkWrapper && !outro && (
         <IntroSection

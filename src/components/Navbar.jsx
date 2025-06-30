@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 function Navbar({scrolled, darkMode}) {
@@ -19,7 +18,7 @@ function Navbar({scrolled, darkMode}) {
           Rijit Singh
         </Link>
         <h3 className={`flex space-x-6 ${darkMode ? "text-gray-800" : "text-[#fdfcfc]"} font-medium`}>
-          Software Engineer | Full Stack Developer
+          Software Engineer | Full Stack Developer | Data Science Enthusiast
         </h3>
       </div>
     </nav>

@@ -21,9 +21,9 @@ function getTooltip(tag) {
   return tag;
 }
 
-function ProjectCard({ image, title, description, tech = [], github, live, tags = [] }) {
+function ProjectCard({ image, title, description, tech = [], github, live, tags = [], dark = true }) {
   return (
-    <div className="flex flex-col justify-between h-full bg-[#1f2937] text-white p-6 rounded-lg shadow-md hover:scale-[1.02] transition-transform duration-300">
+    <div className={`flex flex-col justify-between h-full ${dark ? "bg-[#1f2937] text-[#fdfcfc]" : "bg-gray-200 text-gray-800"} p-6 rounded-lg shadow-md hover:scale-[1.02] transition-transform duration-300`}>
       {/* Image */}
       <div className="relative w-full pb-[56.93%] mb-4 rounded-md overflow-hidden">
   <img
@@ -36,8 +36,8 @@ function ProjectCard({ image, title, description, tech = [], github, live, tags 
       {/* Content */}
       <div className="flex-1 flex flex-col justify-between">
         <div>
-          <h3 className="text-xl font-bold text-[#dfb16d] mb-2">{title}</h3>
-          <p className="text-sm text-gray-300 mb-4">{description}</p>
+          <h3 className={`text-xl font-bold ${dark ? "text-[#dfb16d]" : "text-[#766d3b]"} mb-2`}>{title}</h3>
+          <p className={`text-sm ${dark ? "text-gray-300" : "ttext-gray-800"} mb-4`}>{description}</p>
 
           {/* Tech Stack */}
           <div className="flex flex-wrap gap-3 mb-4">
@@ -50,12 +50,12 @@ function ProjectCard({ image, title, description, tech = [], github, live, tags 
         {/* Links */}
         <div className="mt-auto pt-4 flex gap-6">
           {(
-            <a href={github} target="_blank" rel="noopener noreferrer" className="text-sm text-[#dfb16d] hover:underline">
+            <a href={github} target="_blank" rel="noopener noreferrer" className={`text-sm ${dark ? "text-[#dfb16d]" : "text-[#766d3b]"}`}>
               GitHub →
             </a>
           )}
           {live && (
-            <a href={live} target="_blank" rel="noopener noreferrer" className="text-sm text-[#dfb16d] hover:underline">
+            <a href={live} target="_blank" rel="noopener noreferrer" className={`text-sm ${dark ? "text-[#dfb16d]" : "text-[#766d3b]"}`}>
               Live Demo →
             </a>
           )}

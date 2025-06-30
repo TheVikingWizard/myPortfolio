@@ -1,6 +1,11 @@
-import React from "react";
 import homeIcon from "../assets/home.png"; // adjust path as needed
+import homeIcon2 from "../assets/homeInv.png"; // adjust path as needed
+import darkModeIcon from "../assets/darkMode.png";
+import lightModeIcon from "../assets/lightMode.png";
 import contactIcon from "../assets/contact.png";
+import contactIcon2 from "../assets/contactInv.png";
+import arrowIcon from "../assets/arrow.png";
+import arrowIcon2 from "../assets/arrowInv.png";
 
 const ControlButtons = ({
   darkMode,
@@ -15,6 +20,8 @@ const ControlButtons = ({
   setCurrentIndex,
   animateToIndex,
   SECTIONS,
+  preserveIndexRef,
+  currentIndexRef,
 }) => {
 return (
   <>
@@ -27,7 +34,7 @@ return (
             className="w-12 h-12 flex items-center justify-center bg-[#766d3b] text-white rounded-full shadow-lg hover:bg-[#dfb16d] transition-all duration-300"
             title="Previous Section"
           >
-            ↑
+            <img src={darkMode ? arrowIcon2 : arrowIcon} alt="Previous Section" className="w-12 h-12 rounded-full" />
           </button>
         )}
         {currentIndex < SECTIONS.length - 1 && (
@@ -38,7 +45,7 @@ return (
             className="w-12 h-12 flex items-center justify-center bg-[#766d3b] text-white rounded-full shadow-lg hover:bg-[#dfb16d] transition-all duration-300"
             title="Next Section"
           >
-            ↓
+            <img src={darkMode ? arrowIcon2 : arrowIcon} alt="Next Section" className="w-12 h-12 rounded-full rotate-180" />
           </button>
         )}
       </div>
@@ -62,7 +69,7 @@ return (
           } rounded-full shadow-lg hover:bg-[#5c542f] transition-all duration-300`}
           title="Back to Intro"
         >
-          <img src={homeIcon} alt="Home" className="w-12 h-12 rounded-full" />
+          <img src={darkMode ? homeIcon : homeIcon2} alt="Home" className="w-12 h-12 rounded-full" />
         </button>
       </div>
     )}
@@ -74,9 +81,9 @@ return (
         <button
           onClick={() => setDarkMode(!darkMode)}
           className="w-12 h-12 flex items-center justify-center bg-[#766d3b] text-white rounded-full shadow-lg hover:bg-[#dfb16d] transition duration-300"
-          title="Toggle Dark Mode"
+          title = {`Toggle to ${darkMode ? "Light" : "Dark"} Mode`}
         >
-          {darkMode ? "☀️" : "🌙"}
+          <img src={darkMode ? lightModeIcon : darkModeIcon} alt={darkMode ? "Light Mode" : "Dark Mode"} className="w-12 h-12 rounded-full"/>
         </button>
 
         {/* 🆕 New Button */}
@@ -87,9 +94,9 @@ return (
             window.scrollTo({ top: 0, behavior: "smooth" });
           }}
           className="w-12 h-12 flex items-center justify-center bg-[#dfb16d] text-gray-800 rounded-full shadow-lg hover:bg-[#5c542f] transition-all duration-300"
-          title="New Button"
+          title="Contact Me"
         >
-          <img src={contactIcon} alt="Contact Me" className="w-12 h-12 rounded-full"/>
+          <img src={darkMode ? contactIcon : contactIcon2} alt="Contact Me" className="w-12 h-12 rounded-full"/>
         </button>
       </div>
     )}
@@ -102,7 +109,7 @@ return (
           className="w-12 h-12 flex items-center justify-center bg-[#766d3b] text-white rounded-full shadow-lg hover:bg-[#dfb16d] transition duration-300"
           title="Toggle Dark Mode"
         >
-          {darkMode ? "☀️" : "🌙"}
+          <img src={darkMode ? lightModeIcon : darkModeIcon} alt={darkMode ? "Light Mode" : "Dark Mode"} className="w-12 h-12 rounded-full"/>
         </button>
 
         <button
@@ -112,7 +119,7 @@ return (
           } rounded-full shadow-lg hover:bg-[#5c542f] transition-all duration-300`}
           title="Scroll Down"
         >
-          ↓
+          <img src={arrowIcon} alt="Next" className="w-12 h-12 rounded-full rotate-180"/>
         </button>
       </div>
     )}
@@ -121,11 +128,25 @@ return (
     {outro && !shrinkWrapper && (
       <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3 items-center">
         <button
+          onClick={() => {
+            window.scrollTo({ top: 20, behavior: "smooth" });
+            setTimeout(() => {
+              preserveIndexRef.current = true;
+              setCurrentIndex(currentIndexRef.current);  // 👈 this must come BEFORE
+              setShrinkWrapper(true);                    // 👈 this must come AFTER
+              setOutro(false);
+            }, 700);
+          }}
+          className="w-12 h-12 flex items-center justify-center bg-[#766d3b] text-white rounded-full shadow-lg hover:bg-[#dfb16d] transition duration-300"
+        >
+          <img src={darkMode ? arrowIcon2 : arrowIcon} alt="Go Back" className="w-12 h-12 rounded-full rotate-270" />
+        </button>
+        <button
           onClick={() => setDarkMode(!darkMode)}
           className="w-12 h-12 flex items-center justify-center bg-[#766d3b] text-white rounded-full shadow-lg hover:bg-[#dfb16d] transition duration-300"
           title="Toggle Dark Mode"
         >
-          {darkMode ? "☀️" : "🌙"}
+          <img src={darkMode ? lightModeIcon : darkModeIcon} alt={darkMode ? "Light Mode" : "Dark Mode"} className="w-12 h-12 rounded-full"/>
         </button>
 
         <button
@@ -143,7 +164,7 @@ return (
           } rounded-full shadow-lg hover:bg-[#5c542f] transition-all duration-300`}
           title="Back to Intro"
         >
-          <img src={homeIcon} alt="Home" className="w-12 h-12 rounded-full" />
+          <img src={darkMode ? homeIcon : homeIcon2} alt="Home" className="w-12 h-12 rounded-full" />
         </button>
       </div>
     )}

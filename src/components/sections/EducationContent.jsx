@@ -2,9 +2,9 @@ import iiitdLogo from "../../assets/iiitdLogo.jpg";
 import msitLogo from "../../assets/msitLogo.jpg";
 import banyanLogo from "../../assets/banyanTreeLogo.jpg";
 
-function EducationCard({ logo, institute, location, degree, duration, highlights = [] }) {
+function EducationCard({ dark=true, logo, institute, location, degree, duration, highlights = [] }) {
   return (
-    <div className="relative pl-6 border-l-4 border-[#766d3b] flex gap-8 items-center">
+    <div className={`relative pl-6 border-l-4 ${dark ? "border-[#766d3b]" : "border-[#dfb16d]"} flex gap-8 items-center`}>
       {/* Logo with hover effect */}
       <img
         src={logo}
@@ -17,13 +17,13 @@ function EducationCard({ logo, institute, location, degree, duration, highlights
 
       {/* Details */}
       <div>
-        <h3 className="text-2xl font-bold text-[#dfb16d] leading-tight">
+        <h3 className={`text-2xl font-bold ${dark ? "text-[#dfb16d]" : "text-[#766d3b]"} leading-tight`}>
           {institute}
         </h3>
         <p className="text-lg font-medium mt-1">{location}</p>
         <p className="text-lg font-medium mt-1">{degree}</p>
-        <p className="text-sm mt-1 mb-2 text-gray-400">{duration}</p>
-        <ul className="space-y-1 text-sm text-gray-300 list-disc list-inside">
+        <p className={`text-sm mt-1 mb-2 ${dark ? "text-gray-400" : "text-gray-800"}`}>{duration}</p>
+        <ul className={`space-y-1 text-sm ${dark ? "text-gray-300" : "text-gray-700"} list-disc list-inside`}>
           {highlights.map((text, idx) => (
             <li key={idx}>{text}</li>
           ))}
@@ -33,10 +33,11 @@ function EducationCard({ logo, institute, location, degree, duration, highlights
   );
 }
 
-function EducationContent() {
+function EducationContent({darkMode}) {
   return (
     <div className="space-y-16 mt-16">
       <EducationCard
+        dark = {darkMode ? true : false}
         logo={iiitdLogo}
         institute="Indraprastha Institute of Information Technology, Delhi"
         location="New Delhi, India"
@@ -46,6 +47,7 @@ function EducationContent() {
       />
 
       <EducationCard
+        dark = {darkMode ? true : false}
         logo={msitLogo}
         institute="Maharaja Surajmal Institute of Technology, GGSIPU"
         location="New Delhi, India"
@@ -55,6 +57,7 @@ function EducationContent() {
       />
 
       <EducationCard
+        dark = {darkMode ? true : false}
         logo={banyanLogo}
         institute="Banyan Tree School, Lodhi Road"
         location="New Delhi, India"

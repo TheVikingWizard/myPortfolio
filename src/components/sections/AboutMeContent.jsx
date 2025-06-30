@@ -1,4 +1,4 @@
-export default function AboutContent() {
+export default function AboutContent({darkMode}) {
   const tags = [
     "Minimalist",
     "Offline Explorer",
@@ -45,7 +45,7 @@ export default function AboutContent() {
     <section className="py-12 flex flex-col md:flex-row gap-10">
       {/* Left - Narrative + Tags */}
       <div className="flex-1 space-y-6">
-        <h2 className="text-3xl font-bold text-[#dfb16d]">Who Am I?</h2>
+        <h2 className={`text-3xl font-bold ${darkMode ? "text-[#dfb16d]" : "text-[#766d3b]"}`}>Who Am I?</h2>
         <p className="text-justify">
           Hey — I’m a software engineer based in New Delhi, India. 
           <br></br>I enjoy taking ideas from scratch and turning them into real, working products — 
@@ -66,7 +66,7 @@ export default function AboutContent() {
           {tags.map((tag, i) => (
             <span
               key={i}
-              className="bg-[#dfb16d] text-gray-900 px-3 py-1 rounded-full text-sm font-medium"
+              className={`${darkMode ? "bg-[#dfb16d] text-gray-900" : "bg-[#766d3b] text-[#fdfcfc]"} px-3 py-1 rounded-full text-sm font-medium`}
             >
               {tag}
             </span>
@@ -76,11 +76,11 @@ export default function AboutContent() {
 
       {/* Right - Highlights Timeline */}
       <div className="flex-1 border-l-4 border-[#dfb16d] pl-6 space-y-6">
-        <h3 className="text-xl font-bold text-[#dfb16d] mb-2">Highlights</h3><br></br>
+        <h3 className={`text-xl font-bold ${darkMode ? "text-[#dfb16d]" : "text-[#766d3b]"} mb-2`}>Highlights</h3><br></br>
         {highlights.map((item, idx) => (
           <div key={idx} className="space-y-1">
             <h4 className="font-semibold text-lg">{item.title}</h4>
-            <p className="text-sm text-gray-400">{item.date}</p>
+            <p className={`text-sm ${darkMode ? "text-gray-400" : "text-gray-800"}`}>{item.date}</p>
           </div>
         ))}
       </div>

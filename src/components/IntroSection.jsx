@@ -10,7 +10,7 @@ const IntroSection = ({ darkMode, scrolled, introRef }) => {
       }`}
     >
       <div
-        className={`text-xl ${scrolled ? "opacity-0" : "opacity-100"} ${
+        className={`text-xl ${scrolled ? "opacity-0" : "opacity-100"} border border-gray-500 ${
           darkMode ? "text-white" : "text-gray-800"
         }`}
         style={{ width: "40rem" }}

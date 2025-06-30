@@ -1,7 +1,7 @@
-function SkillCarousel({ title, devicons }) {
+function SkillCarousel({ dark = true, title, devicons }) {
   return (
     <div className="mb-12">
-      <h3 className="text-2xl font-semibold mb-6 text-[#dfb16d]">{title}</h3>
+      <h3 className={`text-2xl font-semibold mb-6 ${dark ? "text-[#dfb16d]" : "text-[#766d3b]"}`}>{title}</h3>
 
       <div className="flex flex-wrap gap-x-10 gap-y-8 items-center">
         {devicons.map(({ icon, label }, idx) => (
@@ -10,7 +10,7 @@ function SkillCarousel({ title, devicons }) {
               className={`${icon} colored text-5xl mb-2 transition-transform hover:scale-110`}
               title={label}
             ></i>
-            <span className="text-sm font-medium text-gray-500 dark:text-gray-300">{label}</span>
+            <span className={`text-sm font-medium ${dark ? "text-[#fdfcfc]" : "text-gray-600"}`}>{label}</span>
           </div>
         ))}
       </div>

@@ -5,20 +5,9 @@ import EducationContent from "../components/sections/EducationContent";
 import ExperienceContent from "../components/sections/ExperienceContent";
 import SkillsContent from "../components/sections/SkillsContent";
 import ProjectsContent from "../components/sections/ProjectsContent";
-import ControlButtons from "../components/ControlButtons";
 import DynamicContent from "../components/DynamicContent";
 import ProfileImage from "../components/ProfileImage";
 import Menu from "../components/Menu";
-import SocialIcons from "../components/SocialIcons";
-
-
-const SECTIONS = [
-  { id: "about", title: "About Me", content: <AboutMeContent />},
-  { id: "skills", title: "Skills", content: <SkillsContent />},
-  { id: "education", title: "Education", content: <EducationContent />},
-  { id: "experience", title: "Experience", content: <ExperienceContent /> },
-  { id: "projects", title: "Projects", content: <ProjectsContent />}
-];
 
 function Home() {
     const [scrolled, setScrolled] = useState(false);
@@ -33,6 +22,14 @@ function Home() {
     const introRef = useRef(null);
     const outroRef = useRef(null);
     const currentIndexRef = useRef(currentIndex);
+
+    const SECTIONS = [
+    { id: "about", title: "About Me", content: <AboutMeContent darkMode={darkMode}/>},
+    { id: "skills", title: "Skills", content: <SkillsContent darkMode={darkMode}/>},
+    { id: "education", title: "Education", content: <EducationContent darkMode={darkMode}/>},
+    { id: "experience", title: "Experience", content: <ExperienceContent darkMode={darkMode}/> },
+    { id: "projects", title: "Projects", content: <ProjectsContent darkMode={darkMode}/>}
+    ];
     
     useEffect(() => {
         window.scrollTo(0, 0); 
@@ -149,24 +146,9 @@ return (
     <div className="w-full min-h-screen pt-24">
       <section
         className={`fixed top-0 left-0 w-full h-screen flex flex-col md:flex-row items-center md:items-start justify-between gap-0 ${
-          darkMode ? "bg-gray-900 text-white" : "bg-gray-50 text-black"
+          darkMode ? "bg-gray-900 text-white" : "bg-[#fdfcfc] text-black"
         } overflow-hidden`}
       >
-        {/* Control Buttons */}
-        <ControlButtons
-          darkMode={darkMode}
-          setDarkMode={setDarkMode}
-          shrinkWrapper={shrinkWrapper}
-          setShrinkWrapper={setShrinkWrapper}
-          scrolled={scrolled}
-          setScrolled={setScrolled}
-          outro={outro}
-          setOutro={setOutro}
-          currentIndex={currentIndex}
-          setCurrentIndex={setCurrentIndex}
-          animateToIndex={animateToIndex}
-          SECTIONS={SECTIONS}
-        />
 
         {/* Profile + Menu Section */}
         <div
@@ -175,7 +157,7 @@ return (
               e.preventDefault();
             }
           }}
-          className={`relative h-full flex-shrink-0 transition-all duration-700 ease-in-out ${
+          className={`relative h-full w-1/2 flex-shrink-0 transition-all duration-700 ease-in-out border border-green-500 ${
             !shrinkWrapper ? "aspect-square" : ""
           }`}
           style={{ width: shrinkWrapper ? "20rem" : undefined }}
@@ -215,6 +197,9 @@ return (
             contentRef={contentRef}
             introRef={introRef}
             outroRef={outroRef}
+            setDarkMode={setDarkMode}
+            setScrolled={setScrolled}
+            animateToIndex={animateToIndex}
           />
         
       </section>

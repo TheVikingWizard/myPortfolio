@@ -1,12 +1,12 @@
 // src/components/SocialRow.jsx
-import linkedinIcon from "../assets/linkedIn.jpg";
-import githubIcon from "../assets/github.jpg";
-import mediumIcon from "../assets/medium.jpg";
-import downloadIcon from "../assets/download.jpg";
-import linkedinIconInv from "../assets/linkedInInv.jpg";
-import githubIconInv from "../assets/githubInv.jpg";
-import mediumIconInv from "../assets/mediumInv.jpg";
-import downloadIconInv from "../assets/downloadInv.jpg";
+import linkedinIcon from "../assets/social/linkedIn.jpg";
+import githubIcon from "../assets/social/github.jpg";
+import mediumIcon from "../assets/social/medium.jpg";
+import downloadIcon from "../assets/social/download.jpg";
+import linkedinIconInv from "../assets/social/linkedinInv.png";
+import githubIconInv from "../assets/social/githubInv.png";
+import mediumIconInv from "../assets/social/mediumInv.png";
+import downloadIconInv from "../assets/social/downloadInv.png";
 
 export default function SocialIcons({ inverted = false, align = "left" }) {
     const iconSize = "w-10 h-10 md:w-12 md:h-12";

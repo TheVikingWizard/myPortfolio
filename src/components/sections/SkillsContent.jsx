@@ -1,9 +1,10 @@
 import SkillCarousel from "../SkillCarousel";
 
-export default function SkillsContent() {
+export default function SkillsContent({darkMode}) {
   return (
     <section className="py-4 space-y-10">
       <SkillCarousel
+        dark={darkMode ? true : false}
         title="Languages"
         devicons={[
           { icon: "devicon-c-plain", label: "C" },
@@ -18,6 +19,7 @@ export default function SkillsContent() {
       />
 
       <SkillCarousel
+        dark={darkMode ? true : false}
         title="Libraries & Frameworks"
         devicons={[
           { icon: "devicon-numpy-plain", label: "NumPy" },
@@ -37,6 +39,7 @@ export default function SkillsContent() {
       />
 
       <SkillCarousel
+        dark={darkMode ? true : false}
         title="Databases"
         devicons={[
           { icon: "devicon-postgresql-plain", label: "PostgreSQL" },
@@ -46,6 +49,7 @@ export default function SkillsContent() {
       />
 
       <SkillCarousel
+        dark={darkMode ? true : false}
         title="Tools, DevOps & IDEs"
         devicons={[
           { icon: "devicon-docker-plain", label: "Docker" },

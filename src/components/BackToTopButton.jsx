@@ -1,6 +1,3 @@
-// BackToTopButton.jsx
-import React from "react";
-
 function BackToTopButton({ onClick }) {
   return (
     <button
