@@ -2,7 +2,7 @@ import SkillCarousel from "../SkillCarousel";
 
 export default function SkillsContent({darkMode}) {
   return (
-    <section className="pt-4 space-y-10">
+    <section className="py-8 mt-4 space-y-12">
       <SkillCarousel
         dark={darkMode ? true : false}
         title="Languages"

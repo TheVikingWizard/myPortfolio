@@ -70,7 +70,7 @@ function GroupedExperienceCard({ dark = true, logo, organization, experiences = 
 
 function ExperienceContent({darkMode}) {
   return (
-    <div className="space-y-20 px-8 mt-12">
+    <div className="space-y-20 px-8 py-8 mt-4">
       <GroupedExperienceCard
         dark = {darkMode ? true : false}
         logo={iiitdLogo}

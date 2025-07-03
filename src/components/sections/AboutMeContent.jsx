@@ -42,7 +42,7 @@ export default function AboutContent({darkMode}) {
   ];
 
   return (
-<section className=" py-4 md:py-12 flex flex-col md:flex-row gap-10 items-stretch">
+<section className=" py-8 mt-4 md:py-12 flex flex-col md:flex-row gap-10 items-stretch">
   {/* Left - Narrative + Tags */}
   <div className="basis-3/5 min-w-[60%] flex flex-col space-y-6">
     <h2 className={`text-3xl font-bold ${darkMode ? "text-[#dfb16d]" : "text-[#766d3b]"}`}>Who Am I?</h2>

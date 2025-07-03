@@ -35,7 +35,7 @@ function EducationCard({ dark=true, logo, institute, location, degree, duration,
 
 function EducationContent({darkMode}) {
   return (
-    <div className="space-y-16 mt-16">
+    <div className="space-y-16 mt-4 py-8">
       <EducationCard
         dark = {darkMode ? true : false}
         logo={iiitdLogo}

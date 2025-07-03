@@ -27,7 +27,7 @@ export default function SocialIcons({
     : iconSize;
 
   return (
-    <div className={`flex ${layoutDirection} ${containerClass} mb-4 border border-red-500`}>
+    <div className={`flex ${layoutDirection} ${containerClass} mb-4`}>
       <a href="https://www.linkedin.com/in/rijit-singh-a74438182/" target="_blank" rel="noopener noreferrer">
         <img
           src={inverted ? linkedinIconInv : linkedinIcon}

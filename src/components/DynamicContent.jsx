@@ -27,15 +27,9 @@ const DynamicContent = ({
   setShowMenu,
   isMobile,
 }) => {
-  console.log("RENDER CHECK", {
-  shrinkWrapper,
-  outro,
-  currentIndex,
-  section: SECTIONS[currentIndex]?.title || "N/A"
-});
   return (
     <div
-      className={`flex-1 overflow-y-auto scrollbar-none md:pr-4 mt-20 ${shrinkWrapper ? "h-[calc(100vh-10rem)] mb-20" : "h-[calc(55vh-5rem)] mb-0"} md:h-full md:mt-0 md:mb-0 md:pr-18 ${
+      className={`flex-1 overflow-y-auto scrollbar-none mt-20 ${shrinkWrapper ? "h-[calc(100vh-10rem)] mb-20" : "h-[calc(55vh-5rem)] mb-0"} md:h-full md:mt-0 md:mb-0 ${
         darkMode ? "bg-gray-900" : "bg-[#fdfcfc]"
       }
       `}
@@ -97,6 +91,7 @@ const DynamicContent = ({
           sectionVisible={sectionVisible}
           currentIndex={currentIndex}
           SECTIONS={SECTIONS}
+          shrinkWrapper={shrinkWrapper}
         />
       )}
 

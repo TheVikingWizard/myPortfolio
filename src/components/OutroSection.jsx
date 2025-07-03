@@ -9,9 +9,9 @@ const OutroSection = ({darkMode, scrolled, outroRef,setShrinkWrapper,setCurrentI
             }`}
             >
             <div
-                className={`text-xl ${scrolled ? "opacity-0" : "opacity-100"} ${
+                className={`text-xl w-full ${scrolled ? "opacity-0" : "opacity-100"} ${
                 darkMode ? "text-white" : "text-gray-800"
-                }`}
+                } mb-0 mt-0 text-center md:text-left`}
                 style={{ width: "40rem" }}
             >
                 <h2 className="text-5xl font-bold mb-4 text-[#dfb16d]">
@@ -24,14 +24,20 @@ const OutroSection = ({darkMode, scrolled, outroRef,setShrinkWrapper,setCurrentI
 
                 <div className="mb-6">
                 <p className="mb-2 font-semibold">Email</p>
-                <div className="flex items-center gap-2">
-                    <span className="select-all">
+                <div className="leading-relaxed mb-6 mx-auto md:mx-0 gap-2">
                     rijitsingh100@gmail.com
-                    </span>
                 </div>
                 </div>
 
-                <SocialIcons align="left" />
+                {/* Mobile Only */}
+                    <div className="block md:hidden mt-8">
+                      <SocialIcons align="center" />
+                    </div>
+                
+                    {/* Desktop and above */}
+                    <div className="hidden md:block">
+                      <SocialIcons align="left" />
+                    </div>
             </div>
         </div>
     );

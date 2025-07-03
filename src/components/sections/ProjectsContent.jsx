@@ -86,7 +86,7 @@ export default function ProjectsContent({darkMode}) {
 
 
   return (
-    <section className="py-12">
+    <section className="py-8">
       {/* Tabs */}
       <div className="hidden md:flex gap-4 mb-6 flex-wrap">
         {categories.map(cat => (
@@ -136,7 +136,7 @@ export default function ProjectsContent({darkMode}) {
       {/* Mobile Accordion */}
       <div className="md:hidden">
         {categories.map(cat => (
-          <details key={cat} className="mb-4">
+          <details key={cat} className="mb-4" {...(cat === "Featured" ? { open: true } : {})}>
             <summary className="cursor-pointer text-lg font-semibold text-[#dfb16d]">{cat}</summary>
             <div className="grid gap-6 mt-4">
               {groupedProjects[cat].map((project, idx) => (

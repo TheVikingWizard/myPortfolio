@@ -208,7 +208,7 @@ return (
         </button>
         <button
           onClick={() => setDarkMode(!darkMode)}
-          className="w-12 h-12 flex items-center justify-center bg-[#766d3b] text-white rounded-full shadow-lg hover:bg-[#dfb16d] transition duration-300"
+          className="hidden md:flex w-12 h-12 flex items-center justify-center bg-[#766d3b] text-white rounded-full shadow-lg hover:bg-[#dfb16d] transition duration-300"
           title="Toggle Dark Mode"
         >
           <img src={darkMode ? lightModeIcon : darkModeIcon} alt={darkMode ? "Light Mode" : "Dark Mode"} className="w-12 h-12 rounded-full"/>
@@ -224,7 +224,7 @@ return (
               setCurrentIndex(-1);
             }, 500);
           }}
-          className={`w-12 h-12 flex items-center justify-center bg-[#dfb16d] ${
+          className={`hidden md:flex w-12 h-12 flex items-center justify-center bg-[#dfb16d] ${
             darkMode ? "text-gray-800" : "text-[#fdfcfc]"
           } rounded-full shadow-lg hover:bg-[#5c542f] transition-all duration-300`}
           title="Back to Intro"
