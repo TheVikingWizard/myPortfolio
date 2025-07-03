@@ -1,21 +1,19 @@
 import profilePic from "../assets/profile.png";
 import profilePic2 from "../assets/profile2.png";
 
-const ProfileImage = ({ darkMode, scrolled, shrinkWrapper, profileRef }) => {
+const ProfileImage = ({ darkMode, scrolled, shrinkWrapper, profileRef, showMenu }) => {
   return (
     <div
       onWheel={(e) => {
         if (shrinkWrapper) e.preventDefault(); // prevent scroll when shrunken
       }}
-      className={`relative h-full flex-shrink-0 transition-all duration-700 ease-in-out ${
-        !shrinkWrapper ? "aspect-square" : ""
-      } border border-red-500`}
-      style={{ width: shrinkWrapper ? "20rem" : undefined }}
+      className={`relative flex-shrink-0 transition-all duration-700 ease-in-out aspect-square
+        ${scrolled ? "flex items-center justify-center" : ""} w-full h-full`}
     >
       <div
         ref={profileRef}
         className={`transition-all duration-900 ease-in-out overflow-hidden z-50 ${
-          scrolled ? "absolute top-4 left-4 w-70 h-70" : "relative w-full h-full"
+          scrolled ? "absolute top-4 w-70 h-70" : "relative w-full h-full"
         }`}
       >
         {/* Unscrolled Image */}
@@ -28,13 +26,14 @@ const ProfileImage = ({ darkMode, scrolled, shrinkWrapper, profileRef }) => {
         />
 
         {/* Scrolled Image */}
-        <img
+        {showMenu && <img
           src={profilePic2}
           alt="Profile Alt"
           className={`absolute top-0 left-0 w-full h-full object-cover object-bottom transition-opacity duration-700 ease-in-out ${
             scrolled ? "opacity-100" : "opacity-0"
           }`}
         />
+        }
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import Navbar from "../components/Navbar";
+import SideNav from "../components/SideNav";
 import AboutMeContent from "../components/sections/AboutMeContent";
 import EducationContent from "../components/sections/EducationContent";
 import ExperienceContent from "../components/sections/ExperienceContent";
@@ -8,12 +9,14 @@ import ProjectsContent from "../components/sections/ProjectsContent";
 import DynamicContent from "../components/DynamicContent";
 import ProfileImage from "../components/ProfileImage";
 import Menu from "../components/Menu";
+import experienceIcon from "../assets/experience.png";
 
 function Home() {
     const [scrolled, setScrolled] = useState(false);
     const [shrinkWrapper, setShrinkWrapper] = useState(false);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [sectionVisible, setSectionVisible] = useState(true); 
+    const [showMenu, setShowMenu] = useState(true);
     const [darkMode, setDarkMode] = useState(true);
     const [outro, setOutro] = useState(false);
     const preserveIndexRef = useRef(false);
@@ -22,13 +25,14 @@ function Home() {
     const introRef = useRef(null);
     const outroRef = useRef(null);
     const currentIndexRef = useRef(currentIndex);
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
 
     const SECTIONS = [
-    { id: "about", title: "About Me", content: <AboutMeContent darkMode={darkMode}/>},
-    { id: "skills", title: "Skills", content: <SkillsContent darkMode={darkMode}/>},
-    { id: "education", title: "Education", content: <EducationContent darkMode={darkMode}/>},
-    { id: "experience", title: "Experience", content: <ExperienceContent darkMode={darkMode}/> },
-    { id: "projects", title: "Projects", content: <ProjectsContent darkMode={darkMode}/>}
+    { id: "about", title: "About Me", content: <AboutMeContent darkMode={darkMode}/>, icon: experienceIcon},
+    { id: "skills", title: "Skills", content: <SkillsContent darkMode={darkMode}/>, icon: experienceIcon},
+    { id: "education", title: "Education", content: <EducationContent darkMode={darkMode}/>, icon: experienceIcon},
+    { id: "experience", title: "Experience", content: <ExperienceContent darkMode={darkMode}/>, icon: experienceIcon},
+    { id: "projects", title: "Projects", content: <ProjectsContent darkMode={darkMode}/>, icon: experienceIcon}
     ];
     
     useEffect(() => {
@@ -43,6 +47,10 @@ function Home() {
         const handleScroll = () => setScrolled(window.scrollY > 10);
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    useEffect(() => {
+        setShowMenu(!isMobile); // false on mobile, true otherwise
     }, []);
     
     useEffect(() => {
@@ -145,42 +153,66 @@ return (
     <Navbar scrolled={scrolled} darkMode={darkMode} />
     <div className="w-full min-h-screen pt-24">
       <section
-        className={`fixed top-0 left-0 w-full h-screen flex flex-col md:flex-row items-center md:items-start justify-between gap-0 ${
+        className={`fixed top-0 left-0 w-full h-screen flex flex-col md:flex-row items-center items-start justify-between gap-0 ${
           darkMode ? "bg-gray-900 text-white" : "bg-[#fdfcfc] text-black"
         } overflow-hidden`}
       >
 
         {/* Profile + Menu Section */}
         <div
-          onWheel={(e) => {
-            if (shrinkWrapper) {
-              e.preventDefault();
-            }
-          }}
-          className={`relative h-full w-1/2 flex-shrink-0 transition-all duration-700 ease-in-out border border-green-500 ${
-            !shrinkWrapper ? "aspect-square" : ""
-          }`}
-          style={{ width: shrinkWrapper ? "20rem" : undefined }}
+            onWheel={(e) => {
+                if (shrinkWrapper) {
+                e.preventDefault();
+                }
+            }}
+            className={`order-2 md:order-1 relative flex-shrink-0 transition-all duration-700 ease-in-out ${
+                !shrinkWrapper
+                ? "aspect-square w-full h-1/2 md:w-1/2 md:h-full"
+                : showMenu
+                ? "w-1/5 h-full"
+                : "w-0 md:w-0 h-full"
+            }`}
         >
           <ProfileImage
             darkMode={darkMode}
             scrolled={scrolled}
             shrinkWrapper={shrinkWrapper}
             profileRef={profileRef}
+            showMenu={showMenu}
           />
 
-          {shrinkWrapper && (
+          {shrinkWrapper && !showMenu && (
+            <SideNav
+                SECTIONS={SECTIONS}
+                currentIndex={currentIndex}
+                setCurrentIndex={setCurrentIndex}
+                setShowMenu={setShowMenu}
+                darkMode={darkMode}
+                setDarkMode={setDarkMode}
+            />
+          )}
+
+          {shrinkWrapper && showMenu && (
             <Menu
-              darkMode={darkMode}
-              shrinkWrapper={shrinkWrapper}
-              currentIndex={currentIndex}
-              setCurrentIndex={setCurrentIndex}
-              SECTIONS={SECTIONS}
+                darkMode={darkMode}
+                shrinkWrapper={shrinkWrapper}
+                currentIndex={currentIndex}
+                setCurrentIndex={setCurrentIndex}
+                SECTIONS={SECTIONS}
+                setShowMenu={setShowMenu}
             />
           )}
         </div>
 
         {/* DynamicContent always rendered, visibility toggled */}
+        <div className={`order-1 md:order-2 flex-1 ${
+            !shrinkWrapper
+            ? "w-full h-1/2 md:w-1/2 md:h-full"
+            : showMenu
+            ? "h-full"
+            : "w-full h-full md:w-[calc(100%-6.5rem)] md:ml-[6.5rem]"
+          }`}
+        >
           <DynamicContent
             darkMode={darkMode}
             shrinkWrapper={shrinkWrapper}
@@ -200,8 +232,11 @@ return (
             setDarkMode={setDarkMode}
             setScrolled={setScrolled}
             animateToIndex={animateToIndex}
+            showMenu={showMenu}
+            setShowMenu={setShowMenu}
+            isMobile={isMobile}
           />
-        
+        </div>
       </section>
 
       <div className="h-[950px] bg-transparent"></div>

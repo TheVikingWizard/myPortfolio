@@ -7,17 +7,17 @@ const ContentSection = ({
 }) => {
   return (
     <div
-      className={`space-y-24 px-8 py-12 transform transition-all duration-500 ease-in-out ${
+      className={`pt-2 md:py-12 transform transition-all duration-500 ease-in-out border border-green-500 ${
         sectionVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-      } border border-green-500`}
+      }`}
     >
       <div
-        className={`min-h-full px-8 py-6 overflow-y-auto ${
+        className={`min-h-full pl-8 pr-8 pb-4 md:py-0 overflow-y-auto ${
           darkMode ? "text-white" : "text-gray-900"
         }`}
       >
         <h3
-          className="text-4xl font-bold mb-4 text-[#dfb16d]"
+          className="text-4xl font-bold mt-4 mb-4 text-[#dfb16d]"
         >
           {SECTIONS[currentIndex].title}
         </h3>

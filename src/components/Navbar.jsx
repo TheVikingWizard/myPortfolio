@@ -17,7 +17,7 @@ function Navbar({scrolled, darkMode}) {
         >
           Rijit Singh
         </Link>
-        <h3 className={`flex space-x-6 ${darkMode ? "text-gray-800" : "text-[#fdfcfc]"} font-medium`}>
+        <h3 className={`hidden md:flex space-x-6 ${darkMode ? "text-gray-800" : "text-[#fdfcfc]"} font-medium`}>
           Software Engineer | Full Stack Developer | Data Science Enthusiast
         </h3>
       </div>

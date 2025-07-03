@@ -22,7 +22,10 @@ const DynamicContent = ({
   currentIndexRef,
   setDarkMode,
   setScrolled,
-  animateToIndex
+  animateToIndex,
+  showMenu,
+  setShowMenu,
+  isMobile,
 }) => {
   console.log("RENDER CHECK", {
   shrinkWrapper,
@@ -32,9 +35,10 @@ const DynamicContent = ({
 });
   return (
     <div
-      className={`flex-1 h-full overflow-y-auto scrollbar-none ${scrolled ? "ml-18" : ""} pr-18 ${
+      className={`flex-1 overflow-y-auto scrollbar-none md:pr-4 mt-20 ${shrinkWrapper ? "h-[calc(100vh-10rem)] mb-20" : "h-[calc(55vh-5rem)] mb-0"} md:h-full md:mt-0 md:mb-0 md:pr-18 ${
         darkMode ? "bg-gray-900" : "bg-[#fdfcfc]"
-      } border border-red-500`}
+      }
+      `}
       ref={contentRef}
       style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
     >
@@ -62,6 +66,8 @@ const DynamicContent = ({
           SECTIONS={SECTIONS}
           preserveIndexRef={preserveIndexRef}
           currentIndexRef={currentIndexRef}
+          setShowMenu={setShowMenu}
+          isMobile={isMobile}
         />
 
       {!shrinkWrapper && !outro && (
