@@ -36,7 +36,7 @@ const SideNav = ({ SECTIONS, currentIndex, setCurrentIndex, setShowMenu, darkMod
       <div className="flex flex-row md:flex-col items-center justify-center flex-1 gap-4 px-2 md:px-0">
         {/* Social Icons – Desktop only */}
         <div className="hidden md:flex">
-          <SocialIcons align="center" direction="col" />
+          <SocialIcons align="center" direction="col" inverted/>
         </div>
 
         {/* Divider */}
@@ -64,7 +64,7 @@ const SideNav = ({ SECTIONS, currentIndex, setCurrentIndex, setShowMenu, darkMod
         <button
           onClick={() => setShowMenu(true)}
           title="Open Menu"
-          className="w-10 h-10 rounded-full bg-[#766d3b] text-white hover:bg-[#dfb16d] transition-all duration-300 flex items-center justify-center"
+          className="w-10 h-10 rounded-full bg-[#dfb16d] text-[#111827] transition-all duration-300 flex items-center justify-center"
         >
           <MdMenuOpen size={20} />
         </button>

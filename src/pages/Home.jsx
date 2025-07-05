@@ -69,7 +69,15 @@ function Home() {
     }, []);
 
     useEffect(() => {
-        setShowMenu(!isMobile); // false on mobile, true otherwise
+        const handleResize = () => {
+            const isNowMobile = window.innerWidth <= 767;
+            setShowMenu(!isNowMobile);
+        };
+
+        handleResize(); // Call on mount in case width changed before mount
+        window.addEventListener("resize", handleResize);
+
+        return () => window.removeEventListener("resize", handleResize);
     }, []);
     
     useEffect(() => {
@@ -183,57 +191,62 @@ return (
   <>
     <Navbar scrolled={scrolled} darkMode={darkMode} setDarkMode={setDarkMode} outro={outro} setOutro={setOutro} currentIndexRef={currentIndexRef} preserveIndexRef={preserveIndexRef} setCurrentIndex={setCurrentIndex} setShrinkWrapper={setShrinkWrapper} />
     <div className="w-full min-h-screen pt-24">
-<section
-  className={`fixed top-0 left-0 w-full h-[100dvh] flex flex-col md:flex-row items-center items-start justify-between gap-0 ${
-    darkMode ? "bg-gray-900 text-white" : "bg-[#fdfcfc] text-black"
-  } overflow-hidden`}
->
-  
-        {/* Profile + Menu Section */}
-        <div
-            onWheel={(e) => {
-                if (shrinkWrapper) {
-                e.preventDefault();
-                }
-            }}
-            className={`border border-red-500 transition-all duration-700 ease-in-out order-2 md:order-1 relative flex-shrink-0 ${
-                !shrinkWrapper
-                ? "w-full h-[45%] md:h-full md:aspect-square md:w-1/2"
-                : showMenu
-                ? "aspect-square w-1/5 h-1/3"
-                : "w-[5.5rem] h-full"
-            }`}
+        <section
+            className={`fixed top-0 left-0 w-full h-[100dvh] flex flex-col md:flex-row items-center items-start justify-between gap-0 ${
+                darkMode ? "bg-gray-900 text-white" : "bg-[#fdfcfc] text-black"
+            } overflow-hidden`}
         >
-          <ProfileImage
-            darkMode={darkMode}
-            scrolled={scrolled}
-            shrinkWrapper={shrinkWrapper}
-            profileRef={profileRef}
-            showMenu={showMenu}
-          />
-
-          {shrinkWrapper && !showMenu && (
-            <SideNav
-                SECTIONS={SECTIONS}
-                currentIndex={currentIndex}
-                setCurrentIndex={setCurrentIndex}
-                setShowMenu={setShowMenu}
+            <div className={`transition-all duration-700 ease-in-out order-2 md:order-1 relative flex-shrink-0 ${!shrinkWrapper ?
+                    "w-full h-[45%] md:h-full md:aspect-square md:w-1/2" : showMenu ? "w-1/5 h-full" : "w-[5.5rem] h-full"
+                }`}
+            >
+            {/* Profile + Menu Section */}
+            <div
+                onWheel={(e) => {
+                    if (shrinkWrapper) {
+                    e.preventDefault();
+                    }
+                }}
+                className={`transition-all duration-700 ease-in-out order-2 md:order-1 relative flex-shrink-0 ${
+                    !shrinkWrapper
+                    ? "w-full h-full md:h-full md:aspect-square"
+                    : showMenu
+                    ? "w-full h-1/3"
+                    : "w-full h-1/3"
+                }`}
+            >
+            <ProfileImage
                 darkMode={darkMode}
-                setDarkMode={setDarkMode}
-            />
-          )}
-
-          {/* {shrinkWrapper && showMenu && delayedMenuContent && (
-            <Menu
-                darkMode={darkMode}
+                scrolled={scrolled}
                 shrinkWrapper={shrinkWrapper}
-                currentIndex={currentIndex}
-                setCurrentIndex={setCurrentIndex}
-                SECTIONS={SECTIONS}
-                setShowMenu={setShowMenu}
-                animateToIndex={animateToIndex}
+                profileRef={profileRef}
+                showMenu={showMenu}
             />
-          )} */}
+
+            {shrinkWrapper && !showMenu && (
+                <SideNav
+                    SECTIONS={SECTIONS}
+                    currentIndex={currentIndex}
+                    setCurrentIndex={setCurrentIndex}
+                    setShowMenu={setShowMenu}
+                    darkMode={darkMode}
+                    setDarkMode={setDarkMode}
+                />
+            )}
+            </div>
+            <div className="w-full h-2/3 transition-all duration-700 ease-in-out px-4">
+                {shrinkWrapper && showMenu && delayedMenuContent && (
+                    <Menu
+                        darkMode={darkMode}
+                        shrinkWrapper={shrinkWrapper}
+                        currentIndex={currentIndex}
+                        setCurrentIndex={setCurrentIndex}
+                        SECTIONS={SECTIONS}
+                        setShowMenu={setShowMenu}
+                        animateToIndex={animateToIndex}
+                    />
+                )}
+            </div>
         </div>
 
         {/* DynamicContent always rendered, visibility toggled */}

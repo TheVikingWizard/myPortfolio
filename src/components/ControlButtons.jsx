@@ -41,7 +41,7 @@ return (
             className="w-12 h-12 flex items-center justify-center bg-[#766d3b] text-white rounded-full shadow-lg hover:bg-[#dfb16d] transition-all duration-300"
             title="Previous Section"
           >
-            <img src={darkMode ? arrowIcon2 : arrowIcon} alt="Previous Section" className="w-12 h-12 rounded-full" />
+            <img src={darkMode ? arrowIcon : arrowIcon2} alt="Previous Section" className="w-12 h-12 rounded-full" />
           </button>
         )}
         {currentIndex < SECTIONS.length - 1 && (
@@ -52,7 +52,7 @@ return (
             className="w-12 h-12 flex items-center justify-center bg-[#766d3b] text-white rounded-full shadow-lg hover:bg-[#dfb16d] transition-all duration-300"
             title="Next Section"
           >
-            <img src={darkMode ? arrowIcon2 : arrowIcon} alt="Next Section" className="w-12 h-12 rounded-full rotate-180" />
+            <img src={darkMode ? arrowIcon : arrowIcon2} alt="Next Section" className="w-12 h-12 rounded-full rotate-180" />
           </button>
         )}
       </div>
