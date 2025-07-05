@@ -2,26 +2,32 @@ import iiitdLogo from "../../assets/iiitdLogo.jpg";
 import msitLogo from "../../assets/msitLogo.jpg";
 import banyanLogo from "../../assets/banyanTreeLogo.jpg";
 
-function EducationCard({ dark=true, logo, institute, location, degree, duration, highlights = [] }) {
+function EducationCard({ dark = true, logo, institute, location, degree, duration, highlights = [] }) {
   return (
-    <div className={`relative pl-6 border-l-4 ${dark ? "border-[#766d3b]" : "border-[#dfb16d]"} flex gap-8 items-center`}>
-      {/* Logo with hover effect */}
-      <img
-        src={logo}
-        alt={`${institute} Logo`}
-        className="w-20 h-20 object-contain mt-1 rounded-md
-                   transform transition-transform duration-300 ease-in-out 
-                   hover:scale-150"
-        title={institute}
-      />
+    <div
+      className={`
+        flex flex-col md:flex-row md:items-center gap-4 md:gap-8 p-4 md:pl-6 rounded-xl shadow-md
+        ${dark ? "bg-[#1f1f1f] text-white" : "bg-white text-black"}
+        ${dark ? "md:border-l-4 md:border-[#766d3b]" : "md:border-l-4 md:border-[#dfb16d]"}
+      `}
+    >
+      {/* Logo */}
+      <div className="flex-shrink-0 flex justify-center md:block">
+        <img
+          src={logo}
+          alt={`${institute} Logo`}
+          className="w-20 h-20 object-contain rounded-md transform transition-transform duration-300 ease-in-out hover:scale-110"
+          title={institute}
+        />
+      </div>
 
       {/* Details */}
-      <div>
-        <h3 className={`text-2xl font-bold ${dark ? "text-[#dfb16d]" : "text-[#766d3b]"} leading-tight`}>
+      <div className="flex-1">
+        <h3 className={`text-xl md:text-2xl font-bold leading-tight ${dark ? "text-[#dfb16d]" : "text-[#766d3b]"}`}>
           {institute}
         </h3>
-        <p className="text-lg font-medium mt-1">{location}</p>
-        <p className="text-lg font-medium mt-1">{degree}</p>
+        <p className="text-base font-medium mt-1">{location}</p>
+        <p className="text-base font-medium mt-1">{degree}</p>
         <p className={`text-sm mt-1 mb-2 ${dark ? "text-gray-400" : "text-gray-800"}`}>{duration}</p>
         <ul className={`space-y-1 text-sm ${dark ? "text-gray-300" : "text-gray-700"} list-disc list-inside`}>
           {highlights.map((text, idx) => (

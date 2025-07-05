@@ -26,10 +26,11 @@ const DynamicContent = ({
   showMenu,
   setShowMenu,
   isMobile,
+  delayedShowContent,
 }) => {
   return (
     <div
-      className={`flex-1 overflow-y-auto scrollbar-none mt-20 ${shrinkWrapper ? "h-[calc(100vh-10rem)] mb-20" : "h-[calc(55vh-5rem)] mb-0"} md:h-full md:mt-0 md:mb-0 ${
+      className={`border border-yellow-500 flex-1 overflow-y-auto scrollbar-none mt-20 ${shrinkWrapper ? "h-[calc(100vh-10rem)] mb-20" : "h-[calc(55vh-5rem)] mb-0"} md:h-full md:mt-0 md:mb-0 ${
         darkMode ? "bg-gray-900" : "bg-[#fdfcfc]"
       }
       `}
@@ -85,7 +86,7 @@ const DynamicContent = ({
         />
       )}
 
-      {shrinkWrapper && !outro && (
+      {shrinkWrapper && delayedShowContent && !outro && (
         <ContentSection
           darkMode={darkMode}
           sectionVisible={sectionVisible}

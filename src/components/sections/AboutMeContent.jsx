@@ -74,8 +74,8 @@ export default function AboutContent({darkMode}) {
   </div>
 
   {/* Right - Highlights */}
-  <div className="basis-2/5 flex-shrink flex flex-col md:border-l-4 border-[#dfb16d] md:pl-6 space-y-6">
-    <h3 className={`text-xl font-bold ${darkMode ? "text-[#dfb16d]" : "text-[#766d3b]"} mb-2`}>Highlights</h3>
+  <div className="basis-2/5 flex-shrink flex flex-col border-t-4 md:border-t-0 md:border-l-4 border-[#dfb16d] md:pl-6 space-y-6">
+    <h3 className={`text-xl font-bold ${darkMode ? "text-[#dfb16d]" : "text-[#766d3b]"} mt-8 md:mt-0 mb-2`}>Highlights</h3>
     <div className="flex flex-col gap-4">
       {highlights.map((item, idx) => (
         <div key={idx} className="space-y-1">

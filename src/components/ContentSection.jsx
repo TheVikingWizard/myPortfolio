@@ -8,7 +8,7 @@ const ContentSection = ({
 }) => {
   return (
     <div
-      className={`pt-2 md:py-12 transform transition-all duration-500 ease-in-out ${
+      className={`border border-yellow-500 pt-2 md:py-12 transform transition-all duration-500 ease-in-out ${
         sectionVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
       } ${shrinkWrapper ? "md:mr-18" : "mr-0"}`}
     >

@@ -64,7 +64,7 @@ return (
         {/* Toggle Button */}
         <button
           onClick={() => setShowSocial((prev) => !prev)}
-          className={`w-10 h-10 flex items-center justify-center bg-[#766d3b] ${
+          className={`w-10 h-10 flex items-center justify-center bg-[#dfb16d] ${
             darkMode ? "text-gray-800" : "text-[#fdfcfc]"
           } rounded-full shadow-lg hover:bg-[#5c542f] transition-all duration-300`}
           title="Social Links"
@@ -91,10 +91,10 @@ return (
       </div>
     )}
 
-    {/* ❌ Back to Intro – Top Right */}
+    {/* ❌ Back to Intro – Top Right (MOBILE) */}
     {shrinkWrapper && (
-      <div className="fixed top-6 right-4 md:right-6 z-50 flex flex-row md:flex-col items-center gap-3">
-        {/* 📩 Contact Me – mobile top-right, desktop bottom */}
+      <div className="fixed top-6 right-4 z-50 flex flex-row items-center gap-3">
+        {/* 📩 Contact Me – mobile top-right */}
         <div className="flex md:hidden">
           <button
             onClick={() => {
@@ -102,18 +102,18 @@ return (
               setShrinkWrapper(false);
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
-            className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#dfb16d] text-gray-800 rounded-full shadow-lg hover:bg-[#5c542f] transition-all duration-300"
+            className="w-10 h-10 flex items-center justify-center bg-[#dfb16d] text-gray-800 rounded-full shadow-lg hover:bg-[#5c542f] transition-all duration-300"
             title="Contact Me"
           >
             <img
               src={darkMode ? contactIcon : contactIcon2}
               alt="Contact Me"
-              className="w-10 h-10 md:w-12 md:h-12 rounded-full"
+              className="w-10 h-10 rounded-full"
             />
           </button>
         </div>
 
-        {/* 🔙 Back to Intro – mobile top-right, desktop top-right */}
+        {/* 🔙 Back to Intro(HOME) – mobile top-right, desktop top-right */}
         <button
           onClick={() => {
             window.scrollTo({ top: 0, behavior: "smooth" });
@@ -121,7 +121,7 @@ return (
               setShrinkWrapper(false);
               setOutro(false);
               setScrolled(false);
-              setCurrentIndex(-1);
+              setCurrentIndex(0);
               setShowMenu(!isMobile);
             }, 500);
           }}
@@ -139,7 +139,7 @@ return (
       </div>
     )}
 
-    {/* 🌙 Dark Mode Toggle & ➕ New Button – Bottom Right */}
+    {/* 🌙 Dark Mode Toggle & ➕ Contact Button – Bottom Right (DESKTOP) */}
     {shrinkWrapper && (
       <div className="hidden md:flex fixed bottom-6 right-6 z-50 flex flex-col gap-3 items-center">
         {/* 🌙 Toggle */}
@@ -151,7 +151,7 @@ return (
           <img src={darkMode ? lightModeIcon : darkModeIcon} alt={darkMode ? "Light Mode" : "Dark Mode"} className="w-12 h-12 rounded-full"/>
         </button>
 
-        {/* 🆕 New Button */}
+        {/* 🆕 Contact Me Button */}
         <button
           onClick={() => {
             setOutro(true);
@@ -191,7 +191,7 @@ return (
 
     {/* Outro-specific controls */}
     {outro && !shrinkWrapper && (
-      <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3 items-center">
+      <div className="hidden md:flex fixed bottom-6 right-6 z-50 flex flex-col gap-3 items-center">
         <button
           onClick={() => {
             window.scrollTo({ top: 20, behavior: "smooth" });
@@ -221,7 +221,7 @@ return (
               setShrinkWrapper(false);
               setOutro(false);
               setScrolled(false);
-              setCurrentIndex(-1);
+              setCurrentIndex(0);
             }, 500);
           }}
           className={`hidden md:flex w-12 h-12 flex items-center justify-center bg-[#dfb16d] ${

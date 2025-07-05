@@ -1,4 +1,6 @@
 import SkillCarousel from "../SkillCarousel";
+import githubIcon from "../../assets/githubSkills.png";
+import pandasIcon from "../../assets/pandas.png";
 
 export default function SkillsContent({darkMode}) {
   return (
@@ -23,13 +25,12 @@ export default function SkillsContent({darkMode}) {
         title="Libraries & Frameworks"
         devicons={[
           { icon: "devicon-numpy-plain", label: "NumPy" },
-          { icon: "devicon-pandas-plain", label: "Pandas" },
+          darkMode ? {image: pandasIcon, label: "Pandas"}: { icon: "devicon-pandas-plain", label: "Pandas" },
           { icon: "devicon-matplotlib-plain", label: "Matplotlib" },
           { icon: "devicon-scikitlearn-plain", label: "Scikit-learn" },
           { icon: "devicon-tensorflow-original", label: "TensorFlow" },
           { icon: "devicon-selenium-original", label: "Selenium" },
           { icon: "devicon-react-original", label: "React" },
-          { icon: "devicon-nextjs-plain", label: "Next.js" },
           { icon: "devicon-nodejs-plain", label: "Node.js" },
           { icon: "devicon-django-plain", label: "Django" },
           { icon: "devicon-spring-plain", label: "Spring Boot" },
@@ -55,7 +56,7 @@ export default function SkillsContent({darkMode}) {
           { icon: "devicon-docker-plain", label: "Docker" },
           { icon: "devicon-kubernetes-plain colored", label: "Kubernetes" },
           { icon: "devicon-git-plain", label: "Git" },
-          { icon: "devicon-github-original", label: "GitHub" },
+          darkMode ? { image: githubIcon, label: "GitHub"} : { icon: "devicon-github-original", label: "Github"},
           { icon: "devicon-postman-plain", label: "Postman" },
           { icon: "devicon-vitejs-plain", label: "Vite.js" },
           { icon: "devicon-vscode-plain", label: "VS Code" },
@@ -64,7 +65,6 @@ export default function SkillsContent({darkMode}) {
           { icon: "devicon-clion-plain", label: "CLion" },
           { icon: "devicon-pycharm-plain colored", label: "PyCharm" },
           { icon: "devicon-cmake-plain colored", label: "CMake" },
-          { icon: "devicon-latex-original colored", label: "Latex" },
         ]}
       />
     </section>

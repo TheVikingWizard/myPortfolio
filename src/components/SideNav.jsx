@@ -10,7 +10,7 @@ const SideNav = ({ SECTIONS, currentIndex, setCurrentIndex, setShowMenu, darkMod
     fixed z-50 shadow-lg ${darkMode ? "bg-[#dfb16d]" : "bg-[#766d3b]"} rounded-full 
     flex items-center justify-center
     px-4 py-2 gap-3  /* <-- ADDED px-4, changed gap-4 to gap-3 */
-    bottom-4 left-1/2 -translate-x-1/2 w-fit
+    bottom-4 left-1/2 -translate-x-1/2 w-11/12
     flex-row
     md:top-1/2 md:left-4 md:-translate-y-1/2 md:translate-x-0 
     md:h-11/12 md:w-14 md:flex-col md:py-6 md:px-0  /* <-- reset desktop padding */
@@ -48,13 +48,13 @@ const SideNav = ({ SECTIONS, currentIndex, setCurrentIndex, setShowMenu, darkMod
             key={title}
             onClick={() => setCurrentIndex(idx)}
             title={title}
-            className={`w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300 border-2 ${
+            className={`w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300 ${
               currentIndex === idx
-                ? "bg-[#111827] text-white scale-110"
-                : "bg-[#111827] text-gray-400 hover:bg-[#dfb16d] hover:text-white"
+                ? ""
+                : ""
             }`}
           >
-            <img src={icon} alt={title} className="w-6 h-6 object-contain" />
+            <img src={icon} alt={title} className="w-10 h-10 rounded-full" />
           </button>
         ))}
       </div>
