@@ -2,6 +2,8 @@ import { MdMenuOpen } from "react-icons/md";
 import SocialIcons from "./SocialIcons";
 import darkModeIcon from "../assets/darkMode.png";
 import lightModeIcon from "../assets/lightMode.png";
+import myIcon from "../assets/myLogo.png";
+import myIconInv from "../assets/myLogoInv.png";
 
 const SideNav = ({ SECTIONS, currentIndex, setCurrentIndex, setShowMenu, darkMode, setDarkMode }) => {
   return (
@@ -18,7 +20,7 @@ const SideNav = ({ SECTIONS, currentIndex, setCurrentIndex, setShowMenu, darkMod
   `}
 >
       {/* 🌙 Dark Mode Button */}
-      <div className="flex items-center justify-center md:mb-4 px-2 md:px-0">
+      <div className="md:hidden flex items-center justify-center md:mb-4 px-2 md:px-0">
         <button
           onClick={() => setDarkMode(!darkMode)}
           className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#dfb16d] transition duration-300"
@@ -31,12 +33,18 @@ const SideNav = ({ SECTIONS, currentIndex, setCurrentIndex, setShowMenu, darkMod
           />
         </button>
       </div>
+      <img 
+        src={darkMode ? myIcon : myIconInv}
+        alt="Rijit Singh"
+        className="hidden md:flex items-center justify-center md:mb-4 w-10 h-10 rounded-full"
+      />
+
 
       {/* ✳️ Middle Section */}
       <div className="flex flex-row md:flex-col items-center justify-center flex-1 gap-4 px-2 md:px-0">
         {/* Social Icons – Desktop only */}
         <div className="hidden md:flex">
-          <SocialIcons align="center" direction="col" inverted/>
+          <SocialIcons align="center" direction="col" inverted={darkMode ? true : undefined}/>
         </div>
 
         {/* Divider */}
@@ -64,9 +72,9 @@ const SideNav = ({ SECTIONS, currentIndex, setCurrentIndex, setShowMenu, darkMod
         <button
           onClick={() => setShowMenu(true)}
           title="Open Menu"
-          className="w-10 h-10 rounded-full bg-[#dfb16d] text-[#111827] transition-all duration-300 flex items-center justify-center"
+          className={`w-10 h-10 rounded-full ${darkMode ? "bg-[#dfb16d] text-[#111827]" : "bg-[#766d3b] text-[#fdfcfc]"} transition-all duration-300 flex items-center justify-center`}
         >
-          <MdMenuOpen size={20} />
+          <MdMenuOpen size={25} className="rotate-180"/>
         </button>
       </div>
     </div>

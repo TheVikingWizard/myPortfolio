@@ -93,7 +93,7 @@ const DynamicContent = ({
           currentIndex={currentIndex}
           SECTIONS={SECTIONS}
           shrinkWrapper={shrinkWrapper}
-        />
+        /> 
       )}
 
     </div>

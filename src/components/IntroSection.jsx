@@ -34,12 +34,12 @@ const IntroSection = ({ darkMode, scrolled, introRef }) => {
 
     {/* Mobile Only */}
     <div className="block md:hidden mt-8">
-      <SocialIcons align="center" />
+      <SocialIcons align="center" size="large"/>
     </div>
 
     {/* Desktop and above */}
     <div className="hidden md:block">
-      <SocialIcons align="left" />
+      <SocialIcons align="left" size="large"/>
     </div>
   </div>
 </div>

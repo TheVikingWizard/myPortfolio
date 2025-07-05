@@ -19,6 +19,8 @@ import experienceIconInv from "../assets/experienceInv.png";
 import educationIconInv from "../assets/educationInv.png";
 import skillIconInv from "../assets/skillInv.png";
 import projectIconInv from "../assets/projectInv.png";
+import menuIcon from "../assets/menuIcon.png";
+import menuIconInv from "../assets/menuIconInv.png";
 
 function Home() {
     const [scrolled, setScrolled] = useState(false);
@@ -30,6 +32,8 @@ function Home() {
     const [outro, setOutro] = useState(false);
     const [delayedShowContent, setDelayedShowContent] = useState(false);
     const [delayedMenuContent, setDelayedMenuContent] = useState(false);
+    const [menuVisible, setMenuVisible] = useState(false);
+    const [closing, setClosing] = useState(false);
     const preserveIndexRef = useRef(false);
     const profileRef = useRef(null);
     const contentRef = useRef(null);
@@ -185,6 +189,22 @@ function Home() {
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, []);
+
+    useEffect(() => {
+        if (shrinkWrapper) {
+        setMenuVisible(true);
+        }
+    }, [shrinkWrapper]);
+
+    // Close with animation
+    const handleClose = () => {
+        setClosing(true);
+        setTimeout(() => {
+        setMenuVisible(false);
+        setClosing(false);
+        setShowMenu(false); // Inform parent
+        }, 700); // match transition duration
+    };
     
 
 return (
@@ -197,7 +217,7 @@ return (
             } overflow-hidden`}
         >
             <div className={`transition-all duration-700 ease-in-out order-2 md:order-1 relative flex-shrink-0 ${!shrinkWrapper ?
-                    "w-full h-[45%] md:h-full md:aspect-square md:w-1/2" : showMenu ? "w-1/5 h-full" : "w-[5.5rem] h-full"
+                    "w-full h-[45%] md:h-full md:aspect-square md:w-1/2" : showMenu ? "w-5/22 h-full" : "w-[5.5rem] h-full"
                 }`}
             >
                 {/* Profile + Menu Section */}
@@ -223,17 +243,34 @@ return (
                         showMenu={showMenu}
                     />
 
-                    {shrinkWrapper && !showMenu && (
-                        <SideNav
-                            SECTIONS={SECTIONS}
-                            currentIndex={currentIndex}
-                            setCurrentIndex={setCurrentIndex}
-                            setShowMenu={setShowMenu}
-                            darkMode={darkMode}
-                            setDarkMode={setDarkMode}
-                        />
+                    {shrinkWrapper && showMenu && (
+                        <button
+                            onClick={handleClose}
+                            className={`w-12 h-12 rounded-full 
+                            ${darkMode ? "bg-[#dfb16d] text-[#111827]" : "bg-[#766d3b] text-[#fdfcfc]"} 
+                            absolute flex items-center justify-center top-6 left-6 z-50 transition`}
+                            title="Back to SideNav"
+                        >
+                            <img 
+                            className="w-6 h-6 object-contain" 
+                            src={darkMode ? menuIcon : menuIconInv}
+                            alt="Close Menu"
+                            />
+                        </button>
                     )}
                 </div>
+
+                {shrinkWrapper && !showMenu && (
+                    <SideNav
+                        SECTIONS={SECTIONS}
+                        currentIndex={currentIndex}
+                        setCurrentIndex={setCurrentIndex}
+                        setShowMenu={setShowMenu}
+                        darkMode={darkMode}
+                        setDarkMode={setDarkMode}
+                    />
+                )}
+
                 <div className="w-full h-2/3 transition-all duration-700 ease-in-out px-4">
                     {shrinkWrapper && showMenu && delayedMenuContent && (
                         <Menu
@@ -256,7 +293,7 @@ return (
                 : showMenu
                 ? "h-full"
                 : "w-full h-full md:w-full"
-            }`}
+                }`}
             >
                 <DynamicContent
                     darkMode={darkMode}
@@ -281,6 +318,9 @@ return (
                     setShowMenu={setShowMenu}
                     isMobile={isMobile}
                     delayedShowContent={delayedShowContent}
+                    setClosing={setClosing}
+                    setMenuVisible={setMenuVisible}
+                    handleClose={handleClose}
                 />
             </div>
         </section>

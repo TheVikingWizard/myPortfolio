@@ -86,6 +86,7 @@ return (
             iconSize="w-10 h-10"
             inverted={darkMode}
             gap="gap-2"
+            size="medium"
           />
         </div>
       </div>
@@ -184,7 +185,7 @@ return (
           } rounded-full shadow-lg hover:bg-[#5c542f] transition-all duration-300`}
           title="Scroll Down"
         >
-          <img src={arrowIcon} alt="Next" className="w-12 h-12 rounded-full rotate-180"/>
+          <img src={darkMode ? arrowIcon : arrowIcon2} alt="Next" className="w-12 h-12 rounded-full rotate-180"/>
         </button>
       </div>
     )}
@@ -192,20 +193,6 @@ return (
     {/* Outro-specific controls */}
     {outro && !shrinkWrapper && (
       <div className="hidden md:flex fixed bottom-6 right-6 z-50 flex flex-col gap-3 items-center">
-        <button
-          onClick={() => {
-            window.scrollTo({ top: 20, behavior: "smooth" });
-            setTimeout(() => {
-              preserveIndexRef.current = true;
-              setCurrentIndex(currentIndexRef.current);  // 👈 this must come BEFORE
-              setShrinkWrapper(true);                    // 👈 this must come AFTER
-              setOutro(false);
-            }, 700);
-          }}
-          className="w-12 h-12 flex items-center justify-center bg-[#766d3b] text-white rounded-full shadow-lg hover:bg-[#dfb16d] transition duration-300"
-        >
-          <img src={darkMode ? arrowIcon2 : arrowIcon} alt="Go Back" className="w-12 h-12 rounded-full rotate-270" />
-        </button>
         <button
           onClick={() => setDarkMode(!darkMode)}
           className="hidden md:flex w-12 h-12 flex items-center justify-center bg-[#766d3b] text-white rounded-full shadow-lg hover:bg-[#dfb16d] transition duration-300"

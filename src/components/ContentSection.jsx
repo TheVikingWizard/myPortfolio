@@ -10,7 +10,7 @@ const ContentSection = ({
     <div
       className={`pt-2 md:py-12 transform transition-all duration-500 ease-in-out ${
         sectionVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-      } ${shrinkWrapper ? "md:mr-18" : "mr-0"}`}
+      } ${shrinkWrapper ? "md:ml-0 md:mr-18" : "mr-0"}`}
     >
       <div
         className={`min-h-full pl-8 pr-8 pb-4 md:py-0 overflow-y-auto ${

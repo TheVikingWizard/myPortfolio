@@ -33,37 +33,19 @@ function Navbar({scrolled, darkMode, setDarkMode, outro, setOutro, currentIndexR
       Software Engineer | Full Stack Developer | Data Science Enthusiast
     </h3>
 
-    {/* Toggle Buttons - mobile only */}
-    <div className="md:hidden flex items-center gap-3">
-      {/* Return Button */}
-      {outro && <button
-        onClick={() => {
-            window.scrollTo({ top: 20, behavior: "smooth" });
-            setTimeout(() => {
-              preserveIndexRef.current = true;
-              setCurrentIndex(currentIndexRef.current);  // 👈 this must come BEFORE
-              setShrinkWrapper(true);                    // 👈 this must come AFTER
-              setOutro(false);
-            }, 700);
-          }}
+    {/* Toggle Button - mobile only */}
+    {/* Dark Mode Toggle */}
+    <button
+      onClick={() => setDarkMode(!darkMode)}
+      className="md:hidden w-10 h-10 flex items-center justify-center text-white rounded-full transition duration-300"
+      title="Toggle Dark Mode"
+    >
+       <img
+        src={darkMode ? lightModeIcon : darkModeIcon}
+        alt={darkMode ? "Light Mode" : "Dark Mode"}
         className="w-10 h-10 rounded-full"
-        title="Return"
-      >
-        <img src={darkMode ? arrowIcon : arrowIcon2} alt="Return" className="w-10 h-10 rounded-full rotate-270" />
-      </button>}
-      {/* Dark Mode Toggle */}
-      <button
-        onClick={() => setDarkMode(!darkMode)}
-        className="w-10 h-10 flex items-center justify-center text-white rounded-full transition duration-300"
-        title="Toggle Dark Mode"
-      >
-        <img
-          src={darkMode ? lightModeIcon : darkModeIcon}
-          alt={darkMode ? "Light Mode" : "Dark Mode"}
-          className="w-10 h-10 rounded-full"
-        />
-      </button>
-    </div>
+      />
+    </button>
   </div>
 </nav>
   );

@@ -7,7 +7,7 @@ function EducationCard({ dark = true, logo, institute, location, degree, duratio
     <div
       className={`
         flex flex-col md:flex-row md:items-center gap-4 md:gap-8 p-4 md:pl-6 rounded-xl shadow-md
-        ${dark ? "bg-[#1f1f1f] text-white" : "bg-white text-black"}
+        ${dark ? "bg-[#1f2937] text-white" : "bg-white text-black"}
         ${dark ? "md:border-l-4 md:border-[#766d3b]" : "md:border-l-4 md:border-[#dfb16d]"}
       `}
     >
@@ -39,38 +39,44 @@ function EducationCard({ dark = true, logo, institute, location, degree, duratio
   );
 }
 
-function EducationContent({darkMode}) {
+function EducationContent({ darkMode }) {
   return (
     <div className="space-y-16 mt-4 py-8">
-      <EducationCard
-        dark = {darkMode ? true : false}
-        logo={iiitdLogo}
-        institute="Indraprastha Institute of Information Technology, Delhi"
-        location="New Delhi, India"
-        degree="Master of Technology (M.Tech), Computer Science Engineering"
-        duration="2023 – 2025"
-        highlights={["CGPA: 7.74"]}
-      />
+      <div className="w-full max-w-3xl ml-0">
+        <EducationCard
+          dark={darkMode}
+          logo={iiitdLogo}
+          institute="Indraprastha Institute of Information Technology, Delhi"
+          location="New Delhi, India"
+          degree="Master of Technology (M.Tech), Computer Science Engineering"
+          duration="2023 – 2025"
+          highlights={["CGPA: 7.74"]}
+        />
+      </div>
 
-      <EducationCard
-        dark = {darkMode ? true : false}
-        logo={msitLogo}
-        institute="Maharaja Surajmal Institute of Technology, GGSIPU"
-        location="New Delhi, India"
-        degree="Bachelor of Technology (B.Tech), Computer Science Engineering"
-        duration="2018 – 2022"
-        highlights={["CGPA: 8.34"]}
-      />
+      <div className="w-full max-w-3xl ml-0">
+        <EducationCard
+          dark={darkMode}
+          logo={msitLogo}
+          institute="Maharaja Surajmal Institute of Technology, GGSIPU"
+          location="New Delhi, India"
+          degree="Bachelor of Technology (B.Tech), Computer Science Engineering"
+          duration="2018 – 2022"
+          highlights={["CGPA: 8.34"]}
+        />
+      </div>
 
-      <EducationCard
-        dark = {darkMode ? true : false}
-        logo={banyanLogo}
-        institute="Banyan Tree School, Lodhi Road"
-        location="New Delhi, India"
-        degree="Secondary and Senior Secondary – CBSE"
-        duration="2016 – 2018"
-        highlights={["XII Percentage: 78%", "X CGPA: 9.6"]}
-      />
+      <div className="w-full max-w-3xl ml-0">
+        <EducationCard
+          dark={darkMode}
+          logo={banyanLogo}
+          institute="Banyan Tree School, Lodhi Road"
+          location="New Delhi, India"
+          degree="Secondary and Senior Secondary – CBSE"
+          duration="2016 – 2018"
+          highlights={["XII Percentage: 78%", "X CGPA: 9.6"]}
+        />
+      </div>
     </div>
   );
 }
