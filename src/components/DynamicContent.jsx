@@ -29,8 +29,9 @@ const DynamicContent = ({
   delayedShowContent,
 }) => {
   return (
+
     <div
-      className={`flex-1 overflow-y-auto scrollbar-none mt-20 ${shrinkWrapper ? "h-[calc(100vh-10rem)] mb-20" : "h-[calc(55vh-5rem)] mb-0"} md:h-full md:mt-0 md:mb-0 ${
+      className={`flex-1 overflow-y-auto scrollbar-none mt-20 ${shrinkWrapper ? "h-[calc(100dvh-10rem)] mb-20" : "h-[calc(55vh-5rem)] mb-0"} md:h-full md:my-0 ${
         darkMode ? "bg-gray-900" : "bg-[#fdfcfc]"
       }
       `}
@@ -77,6 +78,7 @@ const DynamicContent = ({
         <OutroSection
           darkMode={darkMode}
           scrolled={scrolled}
+          setScrolled={setScrolled}
           introRef={outroRef}
           setShrinkWrapper={setShrinkWrapper}
           setCurrentIndex={setCurrentIndex}

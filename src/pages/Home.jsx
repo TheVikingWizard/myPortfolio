@@ -40,7 +40,7 @@ function Home() {
     const introRef = useRef(null);
     const outroRef = useRef(null);
     const currentIndexRef = useRef(currentIndex);
-    const isMobile = window.matchMedia("(max-width: 767px)").matches;
+    const isMobile = window.matchMedia("(max-width: 981px)").matches;
 
     const SECTIONS = [
     { id: "about", title: "About Me", content: <AboutMeContent darkMode={darkMode}/>, icon: darkMode ? aboutIcon : aboutIconInv},
@@ -58,9 +58,9 @@ function Home() {
         }, 900); 
     };
 
-    useEffect(() => {
-        window.scrollTo(0, 0); 
-    }, []);
+    // useEffect(() => {
+    //     window.scrollTo(0, 0); 
+    // }, []);
 
     useEffect(() => {
         currentIndexRef.current = currentIndex;
@@ -71,24 +71,12 @@ function Home() {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
-
-    useEffect(() => {
-        const handleResize = () => {
-            const isNowMobile = window.innerWidth <= 767;
-            setShowMenu(!isNowMobile);
-        };
-
-        handleResize(); // Call on mount in case width changed before mount
-        window.addEventListener("resize", handleResize);
-
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
     
     useEffect(() => {
         if (scrolled) {
             const timer = setTimeout(() => {
             setShrinkWrapper(true);
-
+            setShowMenu(true);
             // Show content after wrapper rescale finishes (~700ms)
             setTimeout(() => setDelayedShowContent(true), 700);
             setTimeout(() => setDelayedMenuContent(true), 700);
@@ -181,7 +169,7 @@ function Home() {
 
     useEffect(() => {
         const handleResize = () => {
-            if (window.innerWidth < 768) {
+            if (window.innerWidth < 982) {
             setShowMenu(false); // auto-close menu on mobile view
             }
         };
@@ -192,7 +180,7 @@ function Home() {
 
     useEffect(() => {
         if (shrinkWrapper) {
-        setMenuVisible(true);
+            setMenuVisible(true);
         }
     }, [shrinkWrapper]);
 
@@ -267,7 +255,7 @@ return (
                         setCurrentIndex={setCurrentIndex}
                         setShowMenu={setShowMenu}
                         darkMode={darkMode}
-                        setDarkMode={setDarkMode}
+                        isMobile={isMobile}
                     />
                 )}
 
@@ -287,7 +275,7 @@ return (
             </div>
 
             {/* DynamicContent always rendered, visibility toggled */}
-            <div className={`order-1 md:order-2 flex-1 ${
+            <div className={`md:order-2 flex-1 ${
                 !shrinkWrapper
                 ? "w-full h-1/2 md:w-1/2 md:h-full"
                 : showMenu

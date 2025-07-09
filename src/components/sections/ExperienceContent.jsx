@@ -2,6 +2,7 @@ import collegeduniaLogo from "../../assets/collegedunia.jpg";
 import drdoLogo from "../../assets/drdo.jpg";
 import isroLogo from "../../assets/isro.jpg";
 import iiitdLogo from "../../assets/iiitdLogo.jpg";
+import pandasIcon from "../../assets/pandas.png";
 
 function ExperienceCard({ dark = true, logo, company, role, duration, description, tools = [] }) {
   return (
@@ -20,13 +21,23 @@ function ExperienceCard({ dark = true, logo, company, role, duration, descriptio
 
         {/* Tools (Devicon) */}
         <div className="flex flex-wrap gap-4 mt-4">
-          {tools.map((toolClass, idx) => (
-            <i
-              key={idx}
-              className={`devicon-${toolClass} colored text-4xl`}
-              title={toolClass.split("-")[0].toUpperCase()}
-            ></i>
-          ))}
+          {tools.map((tool, idx) =>
+            typeof tool === "string" ? (
+              <i
+                key={idx}
+                className={`devicon-${tool} colored text-4xl`}
+                title={tool.split("-")[0].toUpperCase()}
+              ></i>
+            ) : (
+              <img
+                key={idx}
+                src={tool.img}
+                alt={tool.title || "Tool"}
+                title={tool.title || "Tool"}
+                className="w-10 h-10 object-contain"
+              />
+            )
+          )}
         </div>
       </div>
     </div>
@@ -115,7 +126,7 @@ function ExperienceContent({darkMode}) {
         tools={[
           "python-plain",
           "numpy-plain",
-          "pandas-plain",
+          darkMode ? { img: pandasIcon, title: "PANDAS" } : "pandas-plain",
           "matplotlib-plain",
           "scikitlearn-plain",
           "jupyter-plain-wordmark",
@@ -135,7 +146,7 @@ function ExperienceContent({darkMode}) {
         tools={[
           "python-plain",
           "numpy-plain",
-          "pandas-plain",
+          darkMode ? { img: pandasIcon, title: "PANDAS" } : "pandas-plain",
           "matplotlib-plain",
           "scikitlearn-plain",
           "jupyter-plain-wordmark",
@@ -152,7 +163,7 @@ function ExperienceContent({darkMode}) {
         tools={[
           "python-plain",
           "numpy-plain",
-          "pandas-plain",
+          darkMode ? { img: pandasIcon, title: "PANDAS" } : "pandas-plain",
           "matplotlib-plain",
           "selenium-original",
           "django-plain",

@@ -5,6 +5,7 @@ import arrowIcon2 from "../assets/arrowInv.png";
 const OutroSection = ({
   darkMode,
   scrolled,
+  setScrolled,
   outroRef,
   setShrinkWrapper,
   setCurrentIndex,
@@ -35,14 +36,15 @@ const OutroSection = ({
                 setCurrentIndex(currentIndexRef.current);
                 setShrinkWrapper(true);
                 setOutro(false);
+                setScrolled(true);
               }, 700);
             }}
-            className="w-12 h-12 flex items-center justify-center rounded-full transition duration-300"
+            className="w-10 h-10 flex items-center justify-center rounded-full transition duration-300"
           >
             <img
               src={darkMode ? arrowIcon : arrowIcon2}
               alt="Go Back"
-              className="w-12 h-12 rounded-full rotate-270"
+              className="w-10 h-10 rounded-full rotate-270"
             />
           </button>
 
@@ -56,10 +58,7 @@ const OutroSection = ({
         </p>
 
         <div className="mb-6 md:ml-16">
-          <p className="mb-2 font-semibold">Email</p>
-          <div className="leading-relaxed mb-6 mx-auto md:mx-0 gap-2">
-            rijitsingh100@gmail.com
-          </div>
+          <p className="leading-relaxed mb-6 mx-auto md:mx-0 gap-2"><span className="font-semibold">Email :</span><span className="ml-6">rijitsingh100@gmail.com</span></p>
         </div>
 
         {/* Mobile Only */}

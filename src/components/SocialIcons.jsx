@@ -27,7 +27,7 @@ export default function SocialIcons({
 }) {
   const containerClass = align === "center" ? "justify-center" : "justify-start";
   const isColumn = direction === "col";
-  const layoutDirection = isColumn ? "flex-col items-center py-4" : "flex-row";
+  const layoutDirection = isColumn ? "flex-col items-center" : "flex-row";
 
   // ✅ Icon sizing logic based on prop
   const iconStyle =
@@ -48,10 +48,10 @@ export default function SocialIcons({
               darkMode ? "bg-[#111827]" : "bg-[#fdfcfc]"
             }`
           : ""
-      } flex ${layoutDirection} ${containerClass} mb-4`}
+      } flex ${layoutDirection} ${containerClass} ${!isColumn ? "mb-4" : undefined}`}
       style={{
         gap: isColumn
-          ? "clamp(0.75rem, 2vw, 1.75rem)"
+          ? "clamp(0.4rem, 1.25vh, 0.75rem)"
           : "clamp(0.5rem, 1.5vw, 1.25rem)",
       }}
     >
